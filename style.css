@@ -1,0 +1,25 @@
+.windmill {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.blade {
+  position: absolute;
+  top: 0;
+  left: 45px;
+  width: 10px;
+  height: 40px;
+  background: black;
+  transform-origin: bottom center;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

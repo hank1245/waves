@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Draw Polyline</h1>
+    <script>
+      let dragging = false;
+      let drawing = false;
+      let startPoint;
+      let svg = d3
+        .select("body")
+        .append("svg")
+        .attr("height", 1000)
+        .attr("width", 1000);
+
+      let points = [],
+        g;
+
+      let dragger = d3
+        .drag()
+        .on("drag", handleDrag)
+        .on("end", function (d) {
+          dragging = false;
+        });
+
+      const startDrawing = function (e) {
+        if (dragging) return;
+        drawing = true;
+        startPoint = [d3.pointer(e)[0], d3.pointer(e)[1]];
+        if (svg.select("g.drawPoly").empty())
+          g = svg.append("g").attr("class", "drawPoly");
+        points.push(d3.pointer(e));
+
+        let polyline = g
+          .append("polyline")
+          .attr("points", points)
+          .style("fill", "none")
+          .attr("stroke", "#000");
+
+        for (let i = 0; i < points.length; i++) {
+          g.append("circle")
+            .attr("cx", points[i][0])
+            .attr("cy", points[i][1])
+            .attr("r", 4)
+            .attr("fill", "yellow")
+            .attr("stroke", "#000")
+            .style({ cursor: "pointer" });
+        }
+      };
+
+      const cursorMoving = function (e) {
+        if (!drawing) return;
+        let g = d3.select("g.drawPoly");
+        g.select("line").remove();
+        let line = g
+          .append("line")
+          .attr("x1", startPoint[0])
+          .attr("y1", startPoint[1])
+          .attr("x2", d3.pointer(e)[0] + 2)
+          .attr("y2", d3.pointer(e)[1])
+          .attr("stroke", "#53DBF3")
+          .attr("stroke-width", 1);
+      };
+
+      svg.on("mouseup", startDrawing);
+
+      svg.on("mousemove", cursorMoving);
+
+      const escFunction = (e) => {
+        if (e.key === "Escape") {
+          svg.select("g.drawPoly").remove();
+          let g = svg.append("g");
+          g.append("polyline")
+            .attr("points", points)
+            .style("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-width", 5);
+          for (let i = 0; i < points.length; i++) {
+            let circle = g
+              .selectAll("circles")
+              .data([points[i]])
+              .enter()
+              .append("circle")
+              .attr("cx", points[i][0])
+              .attr("cy", points[i][1])
+              .attr("r", 4)
+              .attr("fill", "#FDBC07")
+              .attr("stroke", "#000")
+              .style("cursor", "move")
+              .on("click", startDrawing)
+              .call(dragger);
+          }
+          drawing = false;
+          points = [];
+          d3.select("line").remove();
+        }
+      };
+
+      function handleDrag(e) {
+        if (drawing) return;
+        let dragCircle = d3.select(this),
+          newPoints = [],
+          circle;
+        dragging = true;
+        let poly = d3.select(this.parentNode).select("polyline");
+        let circles = Array.from(
+          d3.select(this.parentNode).selectAll("circle")
+        );
+        dragCircle.attr("cx", e.x).attr("cy", e.y);
+        for (let i = 0; i < circles.length; i++) {
+          circle = d3.select(circles[i]);
+          newPoints.push([circle.attr("cx"), circle.attr("cy")]);
+        }
+        poly.attr("points", newPoints);
+      }
+
+      document.addEventListener("keydown", escFunction, false);
+    </script>
+  </body>
+</html>

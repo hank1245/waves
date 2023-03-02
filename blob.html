@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    section {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      background: #250821;
+    }
+    .blob {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: #fff;
+    }
+  </style>
+  <body>
+    <div class="'blob">
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="100%"
+        id="blobSvg"
+      >
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color: rgb(255, 95, 109)"></stop>
+            <stop offset="100%" style="stop-color: rgb(255, 195, 113)"></stop>
+          </linearGradient>
+        </defs>
+        <path fill="url(#gradient)">
+          <animate
+            attributeName="d"
+            dur="10000ms"
+            repeatCount="indefinite"
+            values="M467,302.5Q469,355,436.5,399.5Q404,444,351,453Q298,462,253.5,446.5Q209,431,159,428.5Q109,426,99.5,376.5Q90,327,80,288.5Q70,250,66.5,205Q63,160,79,108Q95,56,149,50.5Q203,45,251,39.5Q299,34,340.5,59.5Q382,85,402,126Q422,167,443.5,208.5Q465,250,467,302.5Z;
+            M450,295.5Q439,341,402.5,368.5Q366,396,334,436.5Q302,477,255.5,454Q209,431,158,430Q107,429,70,392Q33,355,50.5,302.5Q68,250,58,201.5Q48,153,92.5,130.5Q137,108,173.5,90.5Q210,73,254.5,54.5Q299,36,338,63Q377,90,412,122.5Q447,155,454,202.5Q461,250,450,295.5Z;
+            M433.5,294Q433,338,413,383.5Q393,429,348,456.5Q303,484,251.5,476.5Q200,469,162.5,438Q125,407,77,381.5Q29,356,36,303Q43,250,40.5,199Q38,148,68,104Q98,60,153.5,65.5Q209,71,249.5,72.5Q290,74,341.5,72Q393,70,427,109Q461,148,447.5,199Q434,250,433.5,294Z;
+            M424,290Q416,330,390.5,362Q365,394,335,442.5Q305,491,257,459.5Q209,428,160.5,425.5Q112,423,71.5,389.5Q31,356,23.5,303Q16,250,42,206Q68,162,87,116Q106,70,157,69Q208,68,252.5,55.5Q297,43,346,55.5Q395,68,408.5,117.5Q422,167,427,208.5Q432,250,424,290Z;
+            M467,302.5Q469,355,436.5,399.5Q404,444,351,453Q298,462,253.5,446.5Q209,431,159,428.5Q109,426,99.5,376.5Q90,327,80,288.5Q70,250,66.5,205Q63,160,79,108Q95,56,149,50.5Q203,45,251,39.5Q299,34,340.5,59.5Q382,85,402,126Q422,167,443.5,208.5Q465,250,467,302.5Z;
+            "
+          ></animate>
+        </path>
+      </svg>
+    </div>
+  </body>
+</html>

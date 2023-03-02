@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Curves, Waves, and Blobs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;400;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/kute.js@2.1.2/dist/kute.min.js"></script>
+
+    <style>
+      h1 {
+        font-size: 4rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+      body {
+        margin: 0;
+        font-family: "Prompt", sans-serif;
+        color: white;
+        background: #202731;
+        overflow-x: hidden;
+      }
+
+      section {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 400px;
+        padding-top: 100px;
+      }
+
+      .blue {
+        background: #3c31dd;
+      }
+
+      .red {
+        background: #dd3f31;
+      }
+
+      .pink {
+        background: #ff0066;
+        overflow: hidden;
+      }
+
+      .dark {
+        background: #0f0f10;
+      }
+
+      /* Curved bg with plain CSS */
+
+      .curve {
+        position: absolute;
+        height: 250px;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+      }
+
+      .curve::before {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        transform: translate(85%, 60%);
+        background-color: hsl(216, 21%, 16%);
+      }
+
+      .curve::after {
+        content: "";
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        background-color: #3c31dd;
+        transform: translate(-4%, 40%);
+        z-index: -1;
+      }
+
+      /* Bubble bg with plain CSS */
+
+      .bubble::after {
+        content: "";
+        border-top-left-radius: 50% 100%;
+        border-top-right-radius: 50% 100%;
+        position: absolute;
+        bottom: 0;
+        z-index: -1;
+        width: 100%;
+        background-color: #0f0f10;
+        height: 85%;
+      }
+
+      /* Curved bg with SVG via https://www.shapedivider.app/ */
+
+      .wave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .wave svg {
+        position: relative;
+        display: block;
+        width: calc(103% + 1.3px);
+        height: 262px;
+      }
+
+      .wave .shape-fill {
+        fill: hsl(240, 3%, 6%);
+      }
+
+      /* SVG background image via https://haikei.app/ */
+
+      .spacer {
+        aspect-ratio: 960/300;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .layer1 {
+        background-image: url("./layer1.svg");
+      }
+      .layer2 {
+        background-image: url("./layer2.svg");
+      }
+
+      .flip {
+        transform: rotate(180deg);
+      }
+
+      /* Blobs SVG background image via https://haikei.app/ */
+
+      .blob-motion {
+        position: absolute;
+        transform: translateY(-20%);
+        z-index: 0;
+      }
+
+      .blob-content {
+        z-index: 1;
+      }
+
+      .blobs {
+        width: 100%;
+        background: url("./blobs.svg") no-repeat bottom / cover;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="blue">
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+      <div class="curve"></div>
+    </section>
+
+    <section>
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+    </section>
+
+    <section class="bubble">
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+    </section>
+
+    <section class="dark">
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+    </section>
+
+    <section class="red">
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+
+      <div class="wave">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <div class="spacer layer1"></div>
+
+    <section>
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+    </section>
+
+    <div class="spacer layer2 flip"></div>
+
+    <section class="pink">
+      <div class="blob-content">
+        <h1>Nice Curves!</h1>
+        <p>
+          A website is like a road. The more curves it has the more interesting
+          it is.
+        </p>
+        <div class="blob">
+          <svg
+            viewBox="0 0 500 500"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="100%"
+            id="blobSvg"
+          >
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color: rgb(255, 95, 109)"></stop>
+                <stop
+                  offset="100%"
+                  style="stop-color: rgb(255, 195, 113)"
+                ></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#gradient)">
+              <animate
+                attributeName="d"
+                dur="10000ms"
+                repeatCount="indefinite"
+                values="M467,302.5Q469,355,436.5,399.5Q404,444,351,453Q298,462,253.5,446.5Q209,431,159,428.5Q109,426,99.5,376.5Q90,327,80,288.5Q70,250,66.5,205Q63,160,79,108Q95,56,149,50.5Q203,45,251,39.5Q299,34,340.5,59.5Q382,85,402,126Q422,167,443.5,208.5Q465,250,467,302.5Z;
+                  M450,295.5Q439,341,402.5,368.5Q366,396,334,436.5Q302,477,255.5,454Q209,431,158,430Q107,429,70,392Q33,355,50.5,302.5Q68,250,58,201.5Q48,153,92.5,130.5Q137,108,173.5,90.5Q210,73,254.5,54.5Q299,36,338,63Q377,90,412,122.5Q447,155,454,202.5Q461,250,450,295.5Z;
+                  M433.5,294Q433,338,413,383.5Q393,429,348,456.5Q303,484,251.5,476.5Q200,469,162.5,438Q125,407,77,381.5Q29,356,36,303Q43,250,40.5,199Q38,148,68,104Q98,60,153.5,65.5Q209,71,249.5,72.5Q290,74,341.5,72Q393,70,427,109Q461,148,447.5,199Q434,250,433.5,294Z;
+                  M424,290Q416,330,390.5,362Q365,394,335,442.5Q305,491,257,459.5Q209,428,160.5,425.5Q112,423,71.5,389.5Q31,356,23.5,303Q16,250,42,206Q68,162,87,116Q106,70,157,69Q208,68,252.5,55.5Q297,43,346,55.5Q395,68,408.5,117.5Q422,167,427,208.5Q432,250,424,290Z;
+                  M467,302.5Q469,355,436.5,399.5Q404,444,351,453Q298,462,253.5,446.5Q209,431,159,428.5Q109,426,99.5,376.5Q90,327,80,288.5Q70,250,66.5,205Q63,160,79,108Q95,56,149,50.5Q203,45,251,39.5Q299,34,340.5,59.5Q382,85,402,126Q422,167,443.5,208.5Q465,250,467,302.5Z;
+                  "
+              ></animate>
+            </path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="spacer layer2"></div>
+
+    <section class="blobs">
+      <h1>Nice Curves!</h1>
+      <p>
+        A website is like a road. The more curves it has the more interesting it
+        is.
+      </p>
+    </section>
+  </body>
+</html>
